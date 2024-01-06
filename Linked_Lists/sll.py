@@ -11,6 +11,7 @@ class SLLNode:
         """
         Return the attribute self.data
         """
+        
         return self.data
 
     def set_data(self, new_data):
@@ -23,12 +24,14 @@ class SLLNode:
         """
         Return the attribute self.next
         """
+
         return self.next
 
     def set_next(self, new_next):
         """ 
         Replace existing of self.next with new_next parameter
         """
+
         self.next = new_next
 
 # node = SLLNode("apple")
@@ -57,6 +60,7 @@ class SLL:
         """ 
         Add node whose data is the new_data argument to the front of the Linked List
         """
+
         temp = SLLNode(new_data)
         temp.set_next(self.head)
         self.head = temp
@@ -69,6 +73,7 @@ class SLL:
         The time complexity is 0(n) because every Node in the Linked List must 
         be visited in order to calculate the size of the Linked List
         """
+
         size = 0
         if self.head is None:
             return size
@@ -82,6 +87,13 @@ class SLL:
 
 
     def search(self, data):
+        """ 
+        Traverses the Linked List and returns True if the data searched for is present in one of the Nodes.  
+        Otherwise it returns False.
+
+        The time complexity is 0(n) because in the worst case we have to search all Nodes. 
+        """
+
         if self.head is None:
             return "Linked List is empty. No Nodes to search"
         
@@ -95,7 +107,35 @@ class SLL:
         return False
 
     def remove(self, data):
-        pass
+        """ 
+        Removes the first occurrence of a Node that contains the argument as its self.data variable.  
+        Returns nothing
+
+        The time complexity is 0(n) because in the worst case we have to visit 
+        every Node before we find the one we need to remove
+        """
+
+        if self.head is None:
+            return "The Linked List is empty, no Nodes to remove"
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.get_data() == data:
+                found = True
+            else:
+                if current.get_next() is None:
+                    return "A Node with that data value is not present"
+                else:
+                    previous = current
+                    current = current.get_next()
+
+        if previous is None:
+            self.head = current.get_next()
+        else:
+            previous.set_next(current.get_next())
+
+
 
 
 # sll = SLL()
