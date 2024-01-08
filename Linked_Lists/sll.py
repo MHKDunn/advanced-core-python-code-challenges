@@ -130,6 +130,7 @@ class SLL:
                     previous = current
                     current = current.get_next()
 
+        # We don't remove anything really, we just break the link between Nodes
         if previous is None:
             self.head = current.get_next()
         else:
